@@ -1,2 +1,8 @@
+PYTHON=python3
+PYTHON=python2
+
 all:
-	python lib.py
+	$(PYTHON) lib.py
+
+h:
+	$(PYTHON) hypergeometrictest.py
