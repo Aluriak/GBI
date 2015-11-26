@@ -1,48 +1,9 @@
 from __future__ import print_function
 import itertools
 import igraph as ig
+from libtp import get_edges, RkNN
 
 
-# TO BE USED IN TP
-def get_edges(graph, vertex):
-    "Return iterable of edges of the given graph that are linked to given vertex"
-    try:
-        vertex = vertex.index
-    except AttributeError:
-        pass
-    pairs = (
-        (vertex, cur_vertex)
-        for cur_vertex in range(graph.vcount())
-        if graph[vertex, cur_vertex] > 0
-    )
-    return tuple(graph.es[idx] for idx in graph.get_eids(tuple(pairs)))
-
-
-# TO BE USED IN TP
-def RkNN(graph, k=2):
-    "Return RkNN of given graph"
-    # Create the RNN graph from the given one, with same vertices
-    rnn = ig.Graph(directed=True)
-    for vertex in graph.vs:
-        rnn.add_vertex(**vertex.attributes())
-    for i, vertex in enumerate(graph.vs):
-        assert vertex.index == rnn.vs[i].index
-    # Add directed edges that represent the RNN topology
-    for vertex in graph.vs:
-        edges = get_edges(graph, vertex)
-        weights = tuple(e.attributes()['weight'] for e in edges)
-        # sort edges, according to their weight
-        sorted_edges = sorted(edges, key=lambda e: e.attributes()['weight'])
-        # add the directed edges, from vertex to neighbor, for the k first edges
-        for edge in itertools.islice(sorted_edges, k):
-            idvertex = vertex.index
-            source, target = edge.source, edge.target  # source and target indexes
-            assert idvertex in (source, target)  # vertex is source or target
-            target = target if idvertex == source else source
-            assert idvertex != target
-            weight = edge.attributes()['weight']
-            rnn.add_edge(idvertex, target, weight=weight)
-    return rnn
 
 
 # EXAMPLE OF EXERCISE IN THE TP
@@ -78,7 +39,6 @@ def figure1Ning():
         print('\tdegree:', vertex.degree())
         print('\tbetweenness:', vertex.betweenness())
         print('\tcloseness:', vertex.closeness())
-    exit()
 
     # PLOT
     visual_style = {
