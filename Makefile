@@ -1,0 +1,2 @@
+all:
+	python lib.py
