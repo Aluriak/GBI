@@ -18,6 +18,7 @@ def get_edges(graph, vertex):
     return tuple(graph.es[idx] for idx in graph.get_eids(tuple(pairs)))
 
 
+# TO BE USED IN TP
 def RkNN(graph, k=1):
     "Return RkNN of given graph"
     # Create the RNN graph from the given one, with same vertices
@@ -34,13 +35,13 @@ def RkNN(graph, k=1):
         sorted_edges = sorted(edges, key=lambda e: e.attributes()['weight'])
         # add the directed edges, from vertex to neighbor, for the k first edges
         for edge in itertools.islice(sorted_edges, k):
-            vertex = vertex.index
+            idvertex = vertex.index
             source, target = edge.source, edge.target  # source and target indexes
-            assert vertex in (source, target)  # vertex is source or target
-            target = target if vertex == source else source
-            assert vertex != target
+            assert idvertex in (source, target)  # vertex is source or target
+            target = target if idvertex == source else source
+            assert idvertex != target
             weight = edge.attributes()['weight']
-            rnn.add_edge(vertex, target, weight=weight)
+            rnn.add_edge(idvertex, target, weight=weight)
     return rnn
 
 
@@ -78,12 +79,13 @@ def figure1Ning():
     }
     ig.plot(g, **visual_style)
 
-    rnn = RkNN(g, k=1)
+    rnn = RkNN(g, k=2)
     rnn_visual_style = {
         'vertex_label': rnn.vs['label'],
         'edge_label'  : rnn.es['weight'],
-        'layout'      : rnn.layout_circle(),
+        'layout'      : rnn.layout_kamada_kawai(),
         'margin'      : 150,
+        'autocurve'  : False,
     }
     ig.plot(rnn, **rnn_visual_style)
 
