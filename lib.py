@@ -1,5 +1,5 @@
+from __future__ import print_function
 import itertools
-import operator
 import igraph as ig
 
 
@@ -19,7 +19,7 @@ def get_edges(graph, vertex):
 
 
 # TO BE USED IN TP
-def RkNN(graph, k=1):
+def RkNN(graph, k=2):
     "Return RkNN of given graph"
     # Create the RNN graph from the given one, with same vertices
     rnn = ig.Graph(directed=True)
@@ -45,11 +45,13 @@ def RkNN(graph, k=1):
     return rnn
 
 
+# EXAMPLE OF EXERCISE IN THE TP
 def exercice4():
     g = ig.Graph()
     for source, target, weight in get_graph_from(''):
         # pass
         g.add_edge(source, target, weight=weight)
+
 
 
 
@@ -70,7 +72,15 @@ def figure1Ning():
     g[0, 3] = 1.5
     g[1, 3] = 2.5
 
-    print('WEIGHED:', g.is_weighted())
+    # CENTRALITY
+    for vertex in g.vs:
+        print('VERTEX:', vertex)
+        print('\tdegree:', vertex.degree())
+        print('\tbetweenness:', vertex.betweenness())
+        print('\tcloseness:', vertex.closeness())
+    exit()
+
+    # PLOT
     visual_style = {
         'vertex_label': g.vs['label'],
         'edge_label'  : g.es['weight'],
