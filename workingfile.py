@@ -42,25 +42,48 @@ def centrality_degree(g):
     result = []
     for vertex in g.vs:
         result.append((vertex, ?))  # TODO
-    return result
+    return tuple(result)
 
 
-def analyse_degree_graph(g, threshold):
-    """
-    Return, for a graph, the number of vertex with a degree >= threshold, and 
-    the number of essentials vertex in those ones.
-    g: graph
-    threshold: int
-    """
-    graph_degree         = function_degree(g)
-    nb_vertex            = 0
-    nb_essentials_vertex = 0
-    for vertex_stat in graph_degree:
-        pass # TODO
-    return (nb_vertex, nb_essentials_vertex)
+def pipeline_degree(g, essential_proteins):
+    levels = (1, 2)  # TODO
+    protein_count_total     = []  # number of proteins with a degree >= level
+    protein_count_essential = []  # same for essential proteins
+    degrees = centrality_degree(g)
+    for level in levels:
+        protein_count_total.append(0)
+        protein_count_essential.append(0)
+        for vertex, degree in degrees:
+            if degree >= level:
+                if vertex.name in essential_proteins:
+                    protein_count_essential[-1] += 1
+                protein_all_total[-1] += 1
+    # plotting proportions
+    plot_stats(
+        protein_count_total,
+        protein_count_essential,
+        levels,
+    )
+    # hypergeometric test
+    pvalues = []
+    for index, level in enumerate(levels):
+        protein_count = len(g.vs)
+        # total number of protein: protein_count,
+        # subset of proteins: protein_count_total[index]
+        # total number of essential proteins: len(essential_proteins)
+        # number of essential proteins in subset: protein_count_essential[index]
+        pvalues.append(phyper(
+            protein_count, len(essential_proteins),
+            protein_count_total[index],
+            protein_count_essential[index])
+        ))
+    # plotting p-value evolution
+    plot_phyper(pvalues, levels)
 
 
 if __name__ == '__main__':
     five_vertices()
-    #TODO: create a graph here
-    centrality_degree()
+
+    graph = ig.Graph()  #TODO: create/load a graph here
+    essential_proteins = []  #TODO: load the essential proteins set
+    centrality_degree(graph, essential_proteins)
