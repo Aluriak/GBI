@@ -37,7 +37,10 @@ def fonction_stat(g):
 
 
 def vertices_name(graph):
-    """Return list of names of vertices present in the given graph"""
+    """
+    Return list of names of vertices present in the given graph
+    g: graph
+    """
     name_list = []
     for vertex_name in graph.vs['name']:
         name_list.append(vertex_name)
@@ -69,3 +72,18 @@ def plot_dumb_stats(graph):
                 pass
     plot_stats([prot_count] * 2, special_prot_count, special_letters)
 
+
+# PIPELINE STATISTIQUE
+def analyse_degree_graph(g, threshold):
+    """
+    Renvoie, pour un graph donné, le nombre de sommets d'un degré >= threshold,
+     et parmi ceux-ci, le nombre de graphes essentiels.
+    g: un graphe
+    threshold: un int
+    """
+    graph_degree         = function_degree(g)
+    nb_vertex            = 0
+    nb_essentials_vertex = 0
+    for vertex_stat in graph_degree:
+        pass # TODO
+    return (nb_vertex, nb_essentials_vertex)
