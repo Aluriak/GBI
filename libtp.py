@@ -4,7 +4,11 @@ Definitions of many functions designed for simplify work of students during
 
 """
 from __future__ import print_function
+import itertools
+import igraph as ig
 import scipy.stats as stats
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def phyper(pop_size, pop_condition_count,
@@ -76,3 +80,53 @@ def RkNN(graph, k=2):
     return rnn
 
 
+def plot_stats(prot_number, essential_prot_number, stat_value,
+               stat_name='degree >=', all_color='grey', essential_color='red'):
+    """Plot given data with bars and colors.
+
+    prot_number: iterable of protein count (its the first bar).
+    essential_prot_number: iterable of essential protein count (second bar).
+    stat_value: iterable of value (exemple: minimal degree) used as label for
+        each bar couple.
+    stat_name: name given the the X axis couples of bars.
+    all_color: color given to the bar showing the number
+        of protein (essential or not).
+    essential_color: color given to the bar showing the number
+        of essential protein.
+
+    Obviously, prot_number, essential_prot_number and stat_value must be equals
+        in length, as they just gives different data of the same experiment.
+
+    """
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ## the data
+    assert len(prot_number) == len(stat_value)
+    assert len(prot_number) == len(essential_prot_number)
+    N = len(stat_value)
+
+    ## necessary variables
+    ind = np.arange(N)  # the x locations for the groups
+    width = 0.35        # the width of the bars
+
+    ## the bars
+    rects1 = ax.bar(ind, prot_number, width, color=all_color)
+
+    rects2 = ax.bar(ind+width, essential_prot_number, width,
+                    color=essential_color)
+
+    # axes and labels
+    ax.set_xlim(-width, len(ind) + width)
+    ax.set_ylim(0, max(prot_number) + int(max(prot_number)*0.1) + 1)
+    ax.set_ylabel('Protein count')
+    ax.set_title('Essential protein proportion function to the minimal statistical value')
+    xTickMarks = [stat_name + ' ' + str(i) for i in stat_value]
+    ax.set_xticks(ind+width)
+    xtickNames = ax.set_xticklabels(xTickMarks)
+    plt.setp(xtickNames, rotation=45, fontsize=10)
+
+    ## add a legend
+    ax.legend( (rects1[0], rects2[0]), ('All proteins', 'Essential proteins'))
+
+    plt.show()
