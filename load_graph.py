@@ -90,11 +90,4 @@ if __name__ == "__main__":
     # Load a graph
     make_a_graph(all_nodes, weights_for_edges)
 
-    exit()
-
-    print("taille edges", str(len(g.get_edgelist())))
-
-    for e in g.es:
-        print(e.tuple)
-
 
