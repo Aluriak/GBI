@@ -88,18 +88,6 @@ def make_a_graph(all_nodes, weights_for_edges):
     return g
 
 
-def compute_biological_data():
-    """Parse csv file from BIOGRID & Cytoscape; Then make a graph & return it.
-    
-    """
-
-    # Parse csv file
-    all_nodes, weights_for_edges = parse_ugly_tab()
-
-    # Load a graph
-    return make_a_graph(all_nodes, weights_for_edges)
-
-
 if __name__ == "__main__":
 
     compute_biological_data()

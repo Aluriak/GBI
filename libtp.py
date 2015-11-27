@@ -10,6 +10,8 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import numpy as np
 
+from load_graph import parse_ugly_tab, make_a_graph
+
 
 def phyper(pop_size, pop_condition_count,
            subset_size, subset_condition_count):
@@ -130,3 +132,16 @@ def plot_stats(prot_number, essential_prot_number, stat_value,
     ax.legend( (rects1[0], rects2[0]), ('All proteins', 'Essential proteins'))
 
     plt.show()
+
+
+def compute_biological_data():
+    """Parse csv file from BIOGRID & Cytoscape; Then make a graph & return it.
+
+    """
+
+    # Parse csv file
+    all_nodes, weights_for_edges = parse_ugly_tab()
+
+    # Load a graph
+    return make_a_graph(all_nodes, weights_for_edges)
+
