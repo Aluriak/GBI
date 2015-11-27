@@ -49,6 +49,7 @@ def parse_ugly_tab(path="./data/yeast_biogrid_3.4.129_export.csv"):
 
         return all_nodes, weights_for_edges
 
+
 def make_a_graph(all_nodes, weights_for_edges):
     """This function creates a weighted graph according to given parameters.
 
@@ -56,6 +57,9 @@ def make_a_graph(all_nodes, weights_for_edges):
     :param arg2: dict of edges with weights.
     :type arg1: <list>
     :type arg2: <dict (node1, node2):weight>
+    
+    :return: Return the igraph object.
+    :rtype: <igraph.Graph>
 
     """
 
@@ -80,14 +84,12 @@ def make_a_graph(all_nodes, weights_for_edges):
             raise
 
     print("Edge count: {}".format(g.ecount()))
+    
+    return g
 
 
 if __name__ == "__main__":
 
-    # Parse csv file
-    all_nodes, weights_for_edges = parse_ugly_tab()
-
-    # Load a graph
-    make_a_graph(all_nodes, weights_for_edges)
+    compute_biological_data()
 
 

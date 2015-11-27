@@ -22,7 +22,7 @@ If the subject or the standing guys are not clear enough, please take a look
 """
 from __future__ import print_function
 import igraph as ig
-from libtp import phyper, plot_stats
+from libtp import phyper, plot_phyper, plot_stats, compute_biological_data
 
 
 def five_vertices():
@@ -84,6 +84,6 @@ def pipeline_degree(g, essential_proteins):
 if __name__ == '__main__':
     five_vertices()
 
-    graph = ig.Graph()  #TODO: create/load a graph here
+    graph = compute_biological_data()
     essential_proteins = []  #TODO: load the essential proteins set
     centrality_degree(graph, essential_proteins)

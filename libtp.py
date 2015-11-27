@@ -10,6 +10,8 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import numpy as np
 
+from load_graph import parse_ugly_tab, make_a_graph
+
 
 def phyper(pop_size, pop_condition_count,
            subset_size, subset_condition_count):
@@ -84,14 +86,14 @@ def plot_stats(prot_number, essential_prot_number, stat_value,
                stat_name='degree', all_color='grey', essential_color='red'):
     """Plot given data with bars and colors.
 
-    prot_number: iterable of protein count (its the first bar).
-    essential_prot_number: iterable of essential protein count (second bar).
-    stat_value: iterable of value (exemple: minimal degree) used as label for
+    prot_number: iterable of protein counts (its the first bar).
+    essential_prot_number: iterable of essential protein counts (second bar).
+    stat_value: iterable of values (example: minimal degree), used as labels for
         each bar couple.
-    stat_name: name given the the X axis couples of bars.
-    all_color: color given to the bar showing the number
+    stat_name: given name for the X axis couples of bars.
+    all_color: given color for the bar showing the number
         of protein (essential or not).
-    essential_color: color given to the bar showing the number
+    essential_color: given color for the bar showing the number
         of essential protein.
 
     Obviously, prot_number, essential_prot_number and stat_value must be equals
@@ -149,3 +151,15 @@ def plot_phyper(pvalues, levels, stat_name='degree'):
 
     assert len(pvalues) == len(levels)
     plt.show()
+
+
+def compute_biological_data():
+    """Parse csv file from BIOGRID & Cytoscape; Then make a graph & return it.
+
+    """
+
+    # Parse csv file
+    all_nodes, weights_for_edges = parse_ugly_tab()
+
+    # Load a graph
+    return make_a_graph(all_nodes, weights_for_edges)
