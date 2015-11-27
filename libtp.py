@@ -81,7 +81,7 @@ def RkNN(graph, k=2):
 
 
 def plot_stats(prot_number, essential_prot_number, stat_value,
-               stat_name='degree >=', all_color='grey', essential_color='red'):
+               stat_name='degree', all_color='grey', essential_color='red'):
     """Plot given data with bars and colors.
 
     prot_number: iterable of protein count (its the first bar).
@@ -119,9 +119,9 @@ def plot_stats(prot_number, essential_prot_number, stat_value,
     # axes and labels
     ax.set_xlim(-width, len(ind) + width)
     ax.set_ylim(0, max(prot_number) + int(max(prot_number)*0.1) + 1)
-    ax.set_ylabel('Protein count')
-    ax.set_title('Essential protein proportion function to the minimal statistical value')
-    xTickMarks = [stat_name + ' ' + str(i) for i in stat_value]
+    ax.set_ylabel('Number of (essential) proteins')
+    ax.set_title('Essential protein proportion function to the minimal ' + stat_name + ' value')
+    xTickMarks = [stat_name + ' >= ' + str(i) for i in stat_value]
     ax.set_xticks(ind+width)
     xtickNames = ax.set_xticklabels(xTickMarks)
     plt.setp(xtickNames, rotation=45, fontsize=10)
