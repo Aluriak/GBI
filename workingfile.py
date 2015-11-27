@@ -46,15 +46,15 @@ def centrality_degree(g):
 
 
 def pipeline_degree(g, essential_proteins):
-    levels = (1, 2)  # TODO
-    protein_count_total     = []  # number of proteins with a degree >= level
+    thresholds = (1, 2)  # TODO
+    protein_count_total     = []  # number of proteins with a degree >= threshold
     protein_count_essential = []  # same for essential proteins
     degrees = centrality_degree(g)
-    for level in levels:
+    for threshold in thresholds:
         protein_count_total.append(0)
         protein_count_essential.append(0)
         for vertex, degree in degrees:
-            if degree >= level:
+            if degree >= threshold:
                 if vertex.name in essential_proteins:
                     protein_count_essential[-1] += 1
                 protein_all_total[-1] += 1
@@ -62,11 +62,11 @@ def pipeline_degree(g, essential_proteins):
     plot_stats(
         protein_count_total,
         protein_count_essential,
-        levels,
+        thresholds,
     )
     # hypergeometric test
     pvalues = []
-    for index, level in enumerate(levels):
+    for index, threshold in enumerate(thresholds):
         protein_count = len(g.vs)
         # total number of protein: protein_count,
         # subset of proteins: protein_count_total[index]
@@ -78,7 +78,7 @@ def pipeline_degree(g, essential_proteins):
             protein_count_essential[index])
         ))
     # plotting p-value evolution
-    plot_phyper(pvalues, levels)
+    plot_phyper(pvalues, thresholds)
 
 
 if __name__ == '__main__':
