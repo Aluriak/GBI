@@ -18,11 +18,12 @@ If the subject or the standing guys are not clear enough, please take a look
     - https://en.wikipedia.org/wiki/Centrality
 
 """
-from __future__ import print_function, division_operator
-from libtp import phyper, RkNN, get_edges
+from __future__ import print_function
+import igraph as ig
+from libtp import phyper, RkNN, get_edges, plot_stats
 
 
-# FONCTION EXEMPLE DE CENTRALITÉ
+# FONCTION EXEMPLE DE CENTRALITE
 def fonction_stat(g):
     """
     Retourne une liste de tuple, avec le nom de chaque vertex et sa valeur statistique.
@@ -31,7 +32,7 @@ def fonction_stat(g):
     result = []
     # on regarde chaque vertex dans le graph
     for vertex in g.vs:
-        # A FAIRE :)
+        pass # TODO
     return result
 
 
@@ -49,3 +50,22 @@ def vertices_name(graph):
     return name_list
     # other solution:
     return [vertex_name for vertex_name in graph.vs['name']]
+
+
+def plot_dumb_stats(graph):
+    """Show the special vertex proportion in the graph.
+    A vertex is special if have an 'a' in its name.
+    This is done for 'b' too, because its also special."""
+    prot_count = len(graph.vs['name'])
+    special_prot_count = []
+    special_letters = ('a', 'b')
+    for special_letter in special_letters:
+        special_prot_count.append(0)
+        for vertex_name in graph.vs['name']:
+            try:
+                if special_letter in vertex_name.lower():
+                    special_prot_count[-1] += 1
+            except (AttributeError, TypeError):
+                pass
+    plot_stats([prot_count] * 2, special_prot_count, special_letters)
+
