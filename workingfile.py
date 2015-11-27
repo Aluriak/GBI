@@ -21,11 +21,12 @@ If the subject or the standing guys are not clear enough, please take a look
 from __future__ import print_function, division_operator
 from libtp import phyper, RkNN, get_edges
 
+
 # FONCTION EXEMPLE DE CENTRALITÉ
 def fonction_stat(g):
     """
     Retourne une liste de tuple, avec le nom de chaque vertex et sa valeur statistique.
-    g: un graph
+    g: un graphe
     """
     result = []
     # on regarde chaque vertex dans le graph
@@ -33,11 +34,18 @@ def fonction_stat(g):
         # A FAIRE :)
     return result
 
-def vertex_name(g):
-    """
-    Retourne une liste avec le nom de chaque vertex présent dans le graph.
-    """
+
+def vertices_name(graph):
+    """Return list of names of vertices present in the given graph"""
     name_list = []
-    for vertex_name in g.vs['name']:
+    for vertex_name in graph.vs['name']:
         name_list.append(vertex_name)
     return name_list
+    # other solution:
+    name_list = []
+    for vertex in graph.vs:
+        vertex_attributes = vertex.attributes()
+        name_list.append(vertex_attributes['name'])
+    return name_list
+    # other solution:
+    return [vertex_name for vertex_name in graph.vs['name']]
