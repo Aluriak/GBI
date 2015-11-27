@@ -23,14 +23,14 @@ import igraph as ig
 from libtp import phyper, RkNN, get_edges, plot_stats
 
 
-# FONCTION EXEMPLE DE CENTRALITE
+# Centrality exemple function
 def fonction_stat(g):
     """
-    Retourne une liste de tuple, avec le nom de chaque vertex et sa valeur statistique.
-    g: un graphe
+    Return a liste of tuple, with each vertex name and its stat value.
+    g: graph
     """
     result = []
-    # on regarde chaque vertex dans le graph
+    # for each vertex in graph
     for vertex in g.vs:
         pass # TODO
     return result
@@ -56,9 +56,11 @@ def vertices_name(graph):
 
 
 def plot_dumb_stats(graph):
-    """Show the special vertex proportion in the graph.
+    """
+    Show the special vertex proportion in the graph.
     A vertex is special if have an 'a' in its name.
-    This is done for 'b' too, because its also special."""
+    This is done for 'b' too, because its also special.
+    """
     prot_count = len(graph.vs['name'])
     special_prot_count = []
     special_letters = ('a', 'b')
@@ -76,10 +78,10 @@ def plot_dumb_stats(graph):
 # PIPELINE STATISTIQUE
 def analyse_degree_graph(g, threshold):
     """
-    Renvoie, pour un graph donné, le nombre de sommets d'un degré >= threshold,
-     et parmi ceux-ci, le nombre de graphes essentiels.
-    g: un graphe
-    threshold: un int
+    Return, for a graph, the number of vertex with a degree >= threshold, and 
+    the number of essentials vertex in those ones.
+    g: graph
+    threshold: int
     """
     graph_degree         = function_degree(g)
     nb_vertex            = 0
