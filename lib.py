@@ -1,7 +1,8 @@
 from __future__ import print_function
 import itertools
 import igraph as ig
-from libtp import get_edges, RkNN
+from libtp import get_edges, RkNN, plot_stats
+from workingfile import plot_dumb_stats
 
 
 
@@ -17,6 +18,13 @@ def exercice4():
 
 
 def figure1Ning():
+    # plot_stats(
+        # [3000, 2000, 1000],
+        # [ 300,  200,  100],
+        # [  10,   20,   30],
+    # )
+    # exit()
+
     g = ig.Graph(directed=False)
     # i.plot(g)
     # print(help(g.add_vertex))
@@ -32,6 +40,7 @@ def figure1Ning():
     g[0, 4] = 5.0
     g[0, 3] = 1.5
     g[1, 3] = 2.5
+
 
     # CENTRALITY
     for vertex in g.vs:

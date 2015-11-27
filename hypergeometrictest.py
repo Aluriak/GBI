@@ -21,7 +21,7 @@ def phyper(pop_size, pop_condition_count,
     Other interesting links about hypergeometric tests: 404 not found
 
     """
-    return stats.hypergeom.sf(subset_condition_count - 1,  # without -1, results are generally false
+    return stats.hypergeom.sf(subset_condition_count - 1,  # without the -1, results are generally false
                               pop_size, pop_condition_count, subset_size)
 
 if __name__ == '__main__':
