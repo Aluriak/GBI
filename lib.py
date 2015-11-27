@@ -2,7 +2,7 @@ from __future__ import print_function
 import itertools
 import igraph as ig
 from libtp import get_edges, RkNN, plot_stats
-from workingfile import plot_dumb_stats
+from examples import plot_dumb_stats
 
 
 
@@ -23,7 +23,8 @@ def figure1Ning():
         # [ 300,  200,  100],
         # [  10,   20,   30],
     # )
-    # exit()
+    plot_dumb_stats()
+    exit()
 
     g = ig.Graph(directed=False)
     # i.plot(g)
@@ -34,7 +35,8 @@ def figure1Ning():
     g.es["weight"] = 1.0  # make the graph a weighed one
     g[0, 1] = 2.5
     g[0, 1] = 2.5
-    g[1, 2] = 2.0  # equivalent to g.add_edge(1, 2, weight=2.0)
+    # g[1, 2] = 2.0  # equivalent to g.add_edge(1, 2, weight=2.0)
+    g.add_edge(1, 2, weight=2.0, color='green')
     g[2, 3] = 1.0
     g[3, 4] = 4.0
     g[0, 4] = 5.0
