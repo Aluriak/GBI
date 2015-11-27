@@ -5,7 +5,7 @@ Functions and routines have to be completed, according to the subject provided b
 
 By default, useful functions defined in local library (libtp) are imported,
  as many __future__ features that allows user to code in Python 3 style,
- even if the Pydinosaur is used.
+ even if dinopython is used.
  For all functions of libtp, don't hesitate to use the help() function for
  get the documentation about it.
   example: help(RkNN)
