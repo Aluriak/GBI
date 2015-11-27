@@ -130,3 +130,22 @@ def plot_stats(prot_number, essential_prot_number, stat_value,
     ax.legend( (rects1[0], rects2[0]), ('All proteins', 'Essential proteins'))
 
     plt.show()
+
+
+def plot_phyper(pvalues, levels, stat_name='degree'):
+    """Plot a simple graphics of pvalues function to levels"""
+    ## initialize the figure
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    line = ax.plot(levels, pvalues, color='red', marker='+')
+
+    ## the top axes
+    ax.set_ylim(0., 1.)
+    ax.set_ylabel('p-value')
+    ax.set_xlabel(stat_name + ' levels')
+    ax.set_title('probability of the essential proteins distribution '
+                 'function to ' + stat_name + ' minimal levels')
+
+    assert len(pvalues) == len(levels)
+    plt.show()
