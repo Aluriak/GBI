@@ -20,3 +20,24 @@ If the subject or the standing guys are not clear enough, please take a look
 """
 from __future__ import print_function, division_operator
 from libtp import phyper, RkNN, get_edges
+
+# FONCTION EXEMPLE DE CENTRALITÉ
+def fonction_stat(g):
+    """
+    Retourne une liste de tuple, avec le nom de chaque vertex et sa valeur statistique.
+    g: un graph
+    """
+    result = []
+    # on regarde chaque vertex dans le graph
+    for vertex in g.vs:
+        # A FAIRE :)
+    return result
+
+def vertex_name(g):
+    """
+    Retourne une liste avec le nom de chaque vertex présent dans le graph.
+    """
+    name_list = []
+    for vertex_name in g.vs['name']:
+        name_list.append(vertex_name)
+    return name_list
