@@ -1,7 +1,7 @@
 from __future__ import print_function
 import itertools
 import igraph as ig
-from libtp import get_edges, RkNN, plot_stats
+from libtp import get_edges, RkNN, plot_stats, plot_phyper
 from examples import plot_dumb_stats
 
 
@@ -23,8 +23,12 @@ def figure1Ning():
         # [ 300,  200,  100],
         # [  10,   20,   30],
     # )
-    plot_dumb_stats()
+    plot_phyper(
+        (0.23, 0.42, 0.2),
+        (3, 4, 8),
+    )
     exit()
+    plot_dumb_stats()
 
     g = ig.Graph(directed=False)
     # i.plot(g)
