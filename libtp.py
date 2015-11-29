@@ -153,6 +153,35 @@ def plot_phyper(pvalues, thresholds, stat_name='degree'):
     plt.show()
 
 
+def read_essentials(path="./essentials.txt"):
+    """his function loads all yeast_id of essential genes.
+
+    The file was taken from stanford :
+    http://www-sequence.stanford.edu/group/yeast_deletion_project/Essential_ORFs.txt
+
+    ..Note: Return of 1122/1156 references in file.
+
+    :param arg1: Path of txt file.
+    :type arg1: <str>
+    :return: set of yeast_id of essential genes
+    :rtype: <set>
+
+    """
+
+    with open(path) as file:
+        # Skip headers
+        next(file)
+
+        # Yolo !
+        reader = csv.reader(file, delimiter='\t')
+        essentials_prots = {row[1] for row in reader \
+                            if (len(row) >= 2) and (row[1] != '')}
+
+        print("{} essential genes.".format(len(essentials_prots)))
+
+        return essentials_prots
+
+
 def compute_biological_data():
     """Parse csv file from BIOGRID & Cytoscape; Then make a graph & return it.
 
