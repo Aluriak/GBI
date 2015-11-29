@@ -27,6 +27,7 @@ from libtp import phyper, plot_phyper, plot_stats, compute_biological_data
 
 def five_vertices():
     """
+    Function for the section 1.
     Reproduce the graph in the subject.
     """
     g = ig.Graph()
@@ -82,7 +83,9 @@ def pipeline_degree(g, essential_proteins):
 
 
 if __name__ == '__main__':
-    five_vertices()
+    five_vertices()  # comment that when section 2 is reached
+
+    # TODO: create a graph with the igraph API, and test centrality measures on it.
 
     graph = compute_biological_data()
     essential_proteins = []  #TODO: load the essential proteins set
