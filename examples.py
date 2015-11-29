@@ -38,3 +38,11 @@ def add_property(graph, property_name, value):
     properties = {property_name: value}
     for vertex in graph.vs:
         vertex.update_attributes(properties)
+
+
+def filter_add(graph, target_names, property_name, value):
+    """Add given property with given value to any vertex  of the graph that
+    have its name in target_names"""
+    properties = {property_name: value}
+    for vertex in graph.vs.select(name_in=target_names):
+        vertex.update_attributes(properties)
