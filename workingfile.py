@@ -23,11 +23,12 @@ If the subject or the standing guys are not clear enough, please take a look
 # Anti dinosaur import
 from __future__ import print_function
 import igraph as ig
-from libtp import phyper, plot_stats
+from libtp import phyper, plot_phyper, plot_stats, compute_biological_data
 
 
 def five_vertices():
     """
+    Function for the section 1.
     Reproduce the graph in the subject.
     """
     g = ig.Graph()
@@ -43,25 +44,50 @@ def centrality_degree(g):
     result = []
     for vertex in g.vs:
         result.append((vertex, ?))  # TODO
-    return result
+    return tuple(result)
 
 
-def analyse_degree_graph(g, threshold):
-    """
-    Return, for a graph, the number of vertex with a degree >= threshold, and 
-    the number of essentials vertex in those ones.
-    g: graph
-    threshold: int
-    """
-    graph_degree         = function_degree(g)
-    nb_vertex            = 0
-    nb_essentials_vertex = 0
-    for vertex_stat in graph_degree:
-        pass # TODO
-    return (nb_vertex, nb_essentials_vertex)
+def pipeline_degree(g, essential_proteins):
+    thresholds = (1, 2)  # TODO
+    protein_count_total     = []  # number of proteins with a degree >= threshold
+    protein_count_essential = []  # same for essential proteins
+    degrees = centrality_degree(g)
+    for threshold in thresholds:
+        protein_count_total.append(0)
+        protein_count_essential.append(0)
+        for vertex, degree in degrees:
+            if degree >= threshold:
+                if vertex.name in essential_proteins:
+                    protein_count_essential[-1] += 1
+                protein_all_total[-1] += 1
+    # plotting proportions
+    plot_stats(
+        protein_count_total,
+        protein_count_essential,
+        thresholds,
+    )
+    # hypergeometric test
+    pvalues = []
+    for index, threshold in enumerate(thresholds):
+        protein_count = len(g.vs)
+        # total number of protein: protein_count,
+        # subset of proteins: protein_count_total[index]
+        # total number of essential proteins: len(essential_proteins)
+        # number of essential proteins in subset: protein_count_essential[index]
+        pvalues.append(phyper(
+            protein_count, len(essential_proteins),
+            protein_count_total[index],
+            protein_count_essential[index])
+        ))
+    # plotting p-value evolution
+    plot_phyper(pvalues, thresholds)
 
 
 if __name__ == '__main__':
-    five_vertices()
-    #TODO: create a graph here
-    centrality_degree()
+    five_vertices()  # comment that when section 2 is reached
+
+    # TODO: create a graph with the igraph API, and test centrality measures on it.
+
+    graph = compute_biological_data()
+    essential_proteins = []  #TODO: load the essential proteins set
+    centrality_degree(graph, essential_proteins)

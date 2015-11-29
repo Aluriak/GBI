@@ -1,7 +1,7 @@
 from __future__ import print_function
 import itertools
 import igraph as ig
-from libtp import get_edges, RkNN, plot_stats
+from libtp import get_edges, RkNN, plot_stats, plot_phyper
 from examples import plot_dumb_stats
 
 
@@ -18,13 +18,45 @@ def exercice4():
 
 
 def figure1Ning():
+
+    g = ig.Graph()
+
+    g.add_vertex('S. Townsendii')
+    g.add_vertex('R. Eofficinalis')
+    g.add_vertex('A. Vera')
+    g.add_vertex('S. Alterniflora')
+    g.add_vertex('A. Millefolium')
+
+    g.add_edge(0, 1, weight=2.5)
+    g.add_edge(1, 2, weight=2.0)
+    g.add_edge(2, 3, weight=1.0)
+    g.add_edge(3, 4, weight=4.0)
+    g.add_edge(1, 3, weight=2.5)
+    g.add_edge(0, 4, weight=5.0)
+    g.add_edge(0, 3, weight=1.5)
+
+    visual_style = {
+        'vertex_label': g.vs['name'],
+        'edge_label'  : g.es['weight'],
+        'layout'      : g.layout_circle(),
+        'margin'      : 150,
+        'autocurve'   : False,
+    }
+    ig.plot(g, **visual_style)
+
+    exit()
+
     # plot_stats(
         # [3000, 2000, 1000],
         # [ 300,  200,  100],
         # [  10,   20,   30],
     # )
-    plot_dumb_stats()
+    plot_phyper(
+        (0.23, 0.42, 0.2),
+        (3, 4, 8),
+    )
     exit()
+    plot_dumb_stats()
 
     g = ig.Graph(directed=False)
     # i.plot(g)

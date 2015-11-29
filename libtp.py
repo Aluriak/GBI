@@ -134,6 +134,25 @@ def plot_stats(prot_number, essential_prot_number, stat_value,
     plt.show()
 
 
+def plot_phyper(pvalues, thresholds, stat_name='degree'):
+    """Plot a simple graphics of pvalues function to thresholds"""
+    ## initialize the figure
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    line = ax.plot(thresholds, pvalues, color='red', marker='+')
+
+    ## the top axes
+    ax.set_ylim(0., 1.)
+    ax.set_ylabel('p-value')
+    ax.set_xlabel(stat_name + ' thresholds')
+    ax.set_title('probability of the essential proteins distribution '
+                 'function to ' + stat_name + ' minimal thresholds')
+
+    assert len(pvalues) == len(thresholds)
+    plt.show()
+
+
 def compute_biological_data():
     """Parse csv file from BIOGRID & Cytoscape; Then make a graph & return it.
 
@@ -144,4 +163,3 @@ def compute_biological_data():
 
     # Load a graph
     return make_a_graph(all_nodes, weights_for_edges)
-
