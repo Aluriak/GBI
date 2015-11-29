@@ -56,9 +56,9 @@ def pipeline_degree(g, essential_proteins):
         protein_count_essential.append(0)
         for vertex, degree in degrees:
             if degree >= threshold:
-                if vertex.name in essential_proteins:
+                if vertex.attributes()['name'] in essential_proteins:
                     protein_count_essential[-1] += 1
-                protein_all_total[-1] += 1
+                protein_count_total[-1] += 1
     # plotting proportions
     plot_stats(
         protein_count_total,
@@ -76,7 +76,7 @@ def pipeline_degree(g, essential_proteins):
         pvalues.append(phyper(
             protein_count, len(essential_proteins),
             protein_count_total[index],
-            protein_count_essential[index])
+            protein_count_essential[index]
         ))
     # plotting p-value evolution
     plot_phyper(pvalues, thresholds)
