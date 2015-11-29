@@ -23,7 +23,8 @@ If the subject or the standing guys are not clear enough, please take a look
 # Anti dinosaur import
 from __future__ import print_function
 import igraph as ig
-from libtp import phyper, plot_phyper, plot_stats, compute_biological_data
+from libtp import (phyper, plot_phyper, plot_stats,
+                   compute_biological_data, read_essentials)
 
 
 def five_vertices():
@@ -57,9 +58,9 @@ def pipeline_degree(g, essential_proteins):
         protein_count_essential.append(0)
         for vertex, degree in degrees:
             if degree >= threshold:
-                if vertex.name in essential_proteins:
+                if vertex.attributes()['name'] in essential_proteins:
                     protein_count_essential[-1] += 1
-                protein_all_total[-1] += 1
+                protein_count_total[-1] += 1
     # plotting proportions
     plot_stats(
         protein_count_total,
@@ -77,7 +78,7 @@ def pipeline_degree(g, essential_proteins):
         pvalues.append(phyper(
             protein_count, len(essential_proteins),
             protein_count_total[index],
-            protein_count_essential[index])
+            protein_count_essential[index]
         ))
     # plotting p-value evolution
     plot_phyper(pvalues, thresholds)
@@ -89,5 +90,5 @@ if __name__ == '__main__':
     # TODO: create a graph with the igraph API, and test centrality measures on it.
 
     graph = compute_biological_data()
-    essential_proteins = []  #TODO: load the essential proteins set
-    centrality_degree(graph, essential_proteins)
+    essential_proteins = read_essentials()
+    pipeline_degree(graph, essential_proteins)
