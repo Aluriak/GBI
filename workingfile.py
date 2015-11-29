@@ -22,7 +22,8 @@ If the subject or the standing guys are not clear enough, please take a look
 """
 from __future__ import print_function
 import igraph as ig
-from libtp import phyper, plot_phyper, plot_stats, compute_biological_data
+from libtp import (phyper, plot_phyper, plot_stats,
+                   compute_biological_data, read_essentials)
 
 
 def five_vertices():
@@ -88,5 +89,5 @@ if __name__ == '__main__':
     # TODO: create a graph with the igraph API, and test centrality measures on it.
 
     graph = compute_biological_data()
-    essential_proteins = []  #TODO: load the essential proteins set
-    centrality_degree(graph, essential_proteins)
+    essential_proteins = read_essentials()
+    pipeline_degree(graph, essential_proteins)
