@@ -89,6 +89,7 @@ if __name__ == '__main__':
 
     # TODO: create a graph with the igraph API, and test centrality measures on it.
 
-    graph = compute_biological_data()
+    graph = None  # TODO: read graph from the gml file (see Section 2)
     essential_proteins = read_essentials()
     pipeline_degree(graph, essential_proteins)
+
