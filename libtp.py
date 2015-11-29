@@ -10,7 +10,7 @@ import scipy.stats as stats
 import matplotlib.pyplot as plt
 import numpy as np
 
-from load_graph import parse_ugly_tab, make_a_graph
+from load_graph import *
 
 
 def phyper(pop_size, pop_condition_count,
@@ -158,8 +158,7 @@ def compute_biological_data():
 
     """
 
-    # Parse csv file
-    all_nodes, weights_for_edges = parse_ugly_tab()
-
     # Load a graph
-    return make_a_graph(all_nodes, weights_for_edges)
+    return ig.Graph.Read_GML('my_big_graph2.gml')
+
+
