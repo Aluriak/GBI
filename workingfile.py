@@ -20,6 +20,7 @@ If the subject or the standing guys are not clear enough, please take a look
     - https://en.wikipedia.org/wiki/Centrality
 
 """
+# Anti dinosaur import
 from __future__ import print_function
 import igraph as ig
 from libtp import phyper, plot_stats
