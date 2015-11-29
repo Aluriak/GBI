@@ -168,18 +168,12 @@ def read_essentials(path="./essentials.txt"):
 
     """
 
-    with open(path) as file:
-        # Skip headers
-        next(file)
+    with open("essentials.txt", 'w') as file:
+        essentials_prots = {line.strip() for line in file}
 
-        # Yolo !
-        reader = csv.reader(file, delimiter='\t')
-        essentials_prots = {row[1] for row in reader \
-                            if (len(row) >= 2) and (row[1] != '')}
+    print("{} essential genes.".format(len(essentials_prots)))
 
-        print("{} essential genes.".format(len(essentials_prots)))
-
-        return essentials_prots
+    return essentials_prots
 
 
 def compute_biological_data():
@@ -188,6 +182,6 @@ def compute_biological_data():
     """
 
     # Load a graph
-    return ig.Graph.Read_GML('my_big_graph2.gml')
+    return ig.Graph.Read_GML('biological_data.gml')
 
 
