@@ -33,3 +33,8 @@ def plot_dumb_stats():
     )
 
 
+def add_property(graph, property_name, value):
+    """Add given property with given value to all vertices of the graph"""
+    properties = {property_name: value}
+    for vertex in graph.vs:
+        vertex.update_attributes(properties)
