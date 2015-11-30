@@ -13,7 +13,7 @@ import igraph as ig
 def parse_nodes(path="./data/yeast_biogrid_3.4.129_nodes.csv"):
     """Read informations about nodes from a file 
     exported from biogrid & cytoscape.
-    
+
     :param arg1: Optional. Path of csv file.
     :type arg1: <str>
 
@@ -121,7 +121,7 @@ def read_essentials(path="./data/Essential_ORFs.txt"):
 def parse_ugly_tab(path="./data/yeast_biogrid_3.4.129_export.csv"):
     """This function reads a csv file from BIOGRID, and returns all nodes and 
     edges with weights.
-    
+
     ..Note: You must return a list of nodes. Why ?
         When you create a graph, a set (an iterable) will not be accepted ! 
         This tool doesn't respect the pythonic way of thinking !
@@ -149,7 +149,7 @@ def parse_ugly_tab(path="./data/yeast_biogrid_3.4.129_export.csv"):
         weights_for_edges = {(edge[0], edge[2]):weight for edge, weight in g}
 
         g = (key for key in weights_for_edges)
-        
+
         # The set ensures the uniqueness of the nodes
         # list(set()) is ugly ? Yes it's igraph.
         all_nodes = list(set(it.chain(*g)))
@@ -170,7 +170,7 @@ def get_common_yeast_id(yeast_id_entrez_id, essentials_prots):
 
     common_yeast_id = set(yeast_id_entrez_id.keys()) & essentials_prots
     entrez_ids = {yeast_id_entrez_id[yeast_id] for yeast_id in common_yeast_id}
-    
+
     print("{} common essential proteins (BIOGRID/stanford).".format(len(common_yeast_id)))
     return entrez_ids
 
@@ -183,7 +183,7 @@ def color_graph_with_essential(graph, entrez_ids):
 
     for vertex in seq:
         vertex['color'] = 'green'
-        
+
     print("Color essential nodes [Ok]")
 
 
@@ -194,7 +194,7 @@ def make_a_graph(all_nodes, weights_for_edges):
     :param arg2: dict of edges with weights.
     :type arg1: <list>
     :type arg2: <dict (node1, node2):weight>
-    
+
     :return: Return the igraph object.
     :rtype: <igraph.Graph>
 
@@ -258,7 +258,7 @@ def make_plot_save_graph_with_networkx(weights_for_edges, entrez_ids):
     #networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx
     print('Color for nodes [Ok]')
     print('Drawing...')
-    
+
     # positions for all nodes
     # pos = nx.spring_layout(G) # default => UGLY !
     # apt-get install graphviz graphviz-dev (python-pygraphviz)
@@ -273,7 +273,7 @@ def make_plot_save_graph_with_networkx(weights_for_edges, entrez_ids):
 
     print('Drawing [Ok]')
     print('Saving...')
-    
+
     # Save GML & png
     nx.write_gml(G, "full_biological_data_networkx.gml")
     plt.savefig("full_biological_data_networkx.png", 
@@ -299,7 +299,7 @@ def prune_my_graph(graph, wanted_go_term, go_sub, yeast_id_entrez_id):
 
     pruned_vs = graph.vs.select([node.index for node in graph.vs.select(name_in=mapping)])
     graph = graph.subgraph(pruned_vs)
-    
+
     # Delete nodes with degree = 0
     pruned_vs = graph.vs.select([node.index for node in graph.vs.select(_degree_gt=0)])
     graph = graph.subgraph(pruned_vs)
@@ -317,13 +317,13 @@ if __name__ == "__main__":
 
     # Get all existing yeast_id & entrez_id (nodes in graph) from biogrid
     yeast_id_entrez_id = parse_nodes()
-    
+
     # Get all essential proteins (yeast_ids)
     essentials_prots = read_essentials()
 
     # Get common essential proteins between biogrid & stanford (yeast_id => entrez_ids)
     entrez_ids = get_common_yeast_id(yeast_id_entrez_id, essentials_prots)
-    
+
     with open("essentials.txt", 'w') as file:
         for id in entrez_ids:
             file.write(id + '\n')
@@ -343,7 +343,7 @@ if __name__ == "__main__":
         # Reload
         with open('graph.pkl', 'rb') as pklFile:
             graph = pickle.load(pklFile)
-            
+
         print("Loaded from pickle: {} nodes, {} edges.".format(graph.vcount(), graph.ecount()))
     else:
         # Load a graph
@@ -352,6 +352,26 @@ if __name__ == "__main__":
         # Save
         with open('graph.pkl', 'wb') as output:
             pickle.dump(graph, output)
+
+
+    go_set = {go for go in go_sub if len(go_sub[go]) >= 100}
+
+    for go in go_set:
+        print('---')
+        print(go)
+        # Subgraph of proteins from a GO set.
+        subgraph = prune_my_graph(graph, go, go_sub, yeast_id_entrez_id)
+
+        # Save the sub graph
+        subgraph.save("biological_data_" + go.split(':')[1] + ".gml", format="gml")
+
+        # Color the essential proteins in the graph
+        color_graph_with_essential(subgraph, entrez_ids)
+
+        # save the colored png
+        ig.plot(subgraph, "biological_data_" + go.split(':')[1] + "_colored.png", vertex_size=10)
+
+    exit()
 
     # Subgraph of proteins from a GO set.
     # GO:0008380 RNA splicing
@@ -368,10 +388,10 @@ if __name__ == "__main__":
     # raise TypeError("plotting not available")
     # TypeError: plotting not available
     # pip install cairocffi
-    ig.plot(subgraph,
-            #vertex_label=graph.vs['name'],
-            #layout=graph.layout_kamada_kawai(),
-            vertex_size=10)
+#    ig.plot(subgraph,
+#            #vertex_label=graph.vs['name'],
+#            #layout=graph.layout_kamada_kawai(),
+#            vertex_size=10)
 
     # Save the sub graph
     subgraph.save("biological_data.gml", format="gml")
