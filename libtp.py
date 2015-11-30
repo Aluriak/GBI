@@ -143,7 +143,7 @@ def plot_phyper(pvalues, thresholds, stat_name='degree'):
     line = ax.plot(thresholds, pvalues, color='red', marker='+')
 
     ## the top axes
-    ax.set_ylim(0., 1.)
+    ax.set_ylim(0., 1.1)
     ax.set_ylabel('p-value')
     ax.set_xlabel(stat_name + ' thresholds')
     ax.set_title('probability of the essential proteins distribution '
