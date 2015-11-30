@@ -153,7 +153,7 @@ def plot_phyper(pvalues, thresholds, stat_name='degree'):
     plt.show()
 
 
-def read_essentials(path="./essentials.txt"):
+def read_essentials(graph=None, path="./essentials.txt"):
     """his function loads all yeast_id of essential genes.
 
     The file was taken from stanford :
@@ -171,7 +171,8 @@ def read_essentials(path="./essentials.txt"):
     with open("essentials.txt", 'r') as file:
         essentials_prots = {line.strip() for line in file}
 
-    print("{} essential genes.".format(len(essentials_prots)))
+    if graph is not None:
+        return {p for p in graph.vs['name'] if p in essentials_prots}
 
     return essentials_prots
 
