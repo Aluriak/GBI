@@ -5,4 +5,4 @@ all:
 	$(PYTHON) lib.py
 
 h:
-	$(PYTHON) hypergeometrictest.py
+	$(PYTHON) hypergeometrictest.py 1000 100 50 30
