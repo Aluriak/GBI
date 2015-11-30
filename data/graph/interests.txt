@@ -1,5 +1,5 @@
-biological_data_0016887.gml (little, for degree)
-biological_data_0016020.gml (for degree)
+biological_data_0016887.gml (little, for degree, bof)
+biological_data_0016020.gml (for degree, not between, cool for close)
 biological_data_0005935.gml (for between)
 biological_data_0006811.gml (for between)
 biological_data_0005525.gml (for all?)
