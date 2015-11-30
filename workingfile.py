@@ -87,9 +87,10 @@ def pipeline_degree(g, essential_proteins):
 if __name__ == '__main__':
     five_vertices()  # comment that when section 2 is reached
 
+    # SECTION 2
     # TODO: create a graph with the igraph API, and test centrality measures on it.
+    # TODO: read graph from the gml file
+    # TODO: read the essential proteins
+    # TODO: call the pipeline
 
-    graph = None  # TODO: read graph from the gml file (see Section 2)
-    essential_proteins = read_essentials()
-    pipeline_degree(graph, essential_proteins)
 
