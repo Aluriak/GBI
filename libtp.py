@@ -168,7 +168,7 @@ def read_essentials(path="./essentials.txt"):
 
     """
 
-    with open("essentials.txt", 'w') as file:
+    with open("essentials.txt", 'r') as file:
         essentials_prots = {line.strip() for line in file}
 
     print("{} essential genes.".format(len(essentials_prots)))
@@ -182,6 +182,6 @@ def compute_biological_data():
     """
 
     # Load a graph
-    return ig.Graph.Read_GML('biological_data.gml')
+    return ig.Graph.Read_GML('biological_data_118.gml')
 
 
