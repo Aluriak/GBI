@@ -92,5 +92,3 @@ if __name__ == '__main__':
     # TODO: read graph from the gml file
     # TODO: read the essential proteins
     # TODO: call the pipeline
-
-
