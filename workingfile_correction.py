@@ -95,8 +95,21 @@ if __name__ == '__main__':
     # TODO: read graph from the gml file
     # TODO: read the essential proteins
     # TODO: call the pipeline
-    import glob
-    for filename in reversed(glob.glob('*.gml')):
+
+    files = (
+        'biological_data_0016887.gml',
+        'biological_data_0016020.gml',
+        'biological_data_0005935.gml',
+        'biological_data_0006811.gml',
+        'biological_data_0005525.gml',
+        'biological_data_0003824.gml',
+        'biological_data_0005774.gml',
+        'biological_data_0005524.gml',
+        'biological_data_0003677.gml',
+        'biological_data_0016491.gml',
+        'biological_data_0005886.gml',
+    )
+    for filename in ('data/graph/' + f for f in files):
     # for filename in ('biological_data_0005730.gml',):
         print('FILENAME:', filename)
         g = ig.Graph.Read(filename, format='gml')
