@@ -1,0 +1,123 @@
+GO term,role,nodes in GO subset,cleaned nodes,cleaned edges
+GO:0003964,RNA-directed DNA polymerase activity,43,0,0
+GO:0004190,aspartic-type endopeptidase activity,47,0,0
+GO:0071897,DNA biosynthetic process,50,2,1
+GO:0003887,DNA-directed DNA polymerase activity,58,7,5
+GO:0032543,mitochondrial translation,59,9,7
+GO:0090305,nucleic acid phosphodiester bond hydrolysis,80,9,10
+GO:0005811,lipid particle,50,14,8
+GO:0003743,translation initiation factor activity,37,15,22
+GO:0005758,mitochondrial intermembrane space,58,16,15
+GO:0016779,nucleotidyltransferase activity,91,17,12
+GO:0004518,nuclease activity,95,18,26
+GO:0030435,sporulation resulting in formation of a cellular spore,108,18,12
+GO:0003735,structural constituent of ribosome,94,20,17
+GO:0005618,cell wall,62,21,30
+GO:0005777,peroxisome,69,22,38
+GO:0009277,fungal-type cell wall,76,22,26
+GO:0006310,DNA recombination,92,24,35
+GO:0008168,methyltransferase activity,78,28,34
+GO:0005576,extracellular region,85,29,36
+GO:0000324,fungal-type vacuole,99,32,32
+GO:0000978,RNA polymerase II core promoter proximal region sequence-specific DNA binding,51,32,48
+GO:0030687,preribosome,70,32,46
+GO:0003924,GTPase activity,68,33,49
+GO:0004842,ubiquitin-protein transferase activity,81,40,45
+GO:0016567,protein ubiquitination,80,40,63
+GO:0051082,unfolded protein binding,72,40,69
+GO:0006338,chromatin remodeling,57,41,138
+GO:0005643,nuclear pore,56,43,150
+GO:0005525,GTP binding,97,44,66
+GO:0000398,mRNA splicing,80,45,175
+GO:0006260,DNA replication,75,45,143
+GO:0006457,protein folding,82,45,94
+GO:0005816,spindle pole body,70,46,151
+GO:0005741,mitochondrial outer membrane,87,47,80
+GO:0008233,peptidase activity,143,47,122
+GO:0004386,helicase activity,94,49,58
+GO:0006811,ion transport,105,49,73
+GO:0008652,cellular amino acid biosynthetic process,99,49,76
+GO:0016757,transferase activity,87,49,163
+GO:0016887,ATPase activity,103,50,48
+GO:0002181,cytoplasmic translation,71,51,53
+GO:0008033,tRNA processing,83,51,99
+GO:0031505,fungal-type cell wall organization,80,51,84
+GO:0008380,RNA splicing,101,53,253
+GO:0005840,ribosome,177,54,54
+GO:0006508,proteolysis,153,54,138
+GO:0005975,carbohydrate metabolic process,99,56,65
+GO:0030529,intracellular ribonucleoprotein complex,183,57,101
+GO:0005759,mitochondrial matrix,116,59,116
+GO:0006888,ER to Golgi vesicle-mediated transport,79,59,195
+GO:0006897,endocytosis,84,60,142
+GO:0051321,meiotic cell cycle,112,60,87
+GO:0003682,chromatin binding,95,62,201
+GO:0005774,vacuolar membrane,145,68,139
+GO:0000122,negative regulation of transcription from RNA polymerase II promoter,85,69,289
+GO:0016874,ligase activity,137,70,85
+GO:0042254,ribosome biogenesis,177,70,133
+GO:0006357,regulation of transcription from RNA polymerase II promoter,106,72,236
+GO:0005622,intracellular,142,74,116
+GO:0005934,cellular bud tip,94,75,183
+GO:0006412,translation,175,76,130
+GO:0000329,fungal-type vacuole membrane,155,78,204
+GO:0006366,transcription from RNA polymerase II promoter,112,78,161
+GO:0005768,endosome,111,82,212
+GO:0005773,vacuole,171,84,198
+GO:0055085,transmembrane transport,218,84,76
+GO:0043332,mating projection tip,110,87,327
+GO:0005694,chromosome,128,88,229
+GO:0005856,cytoskeleton,142,91,414
+GO:0006364,rRNA processing,184,91,227
+GO:0000139,olgi membrane,118,92,499
+GO:0006397,mRNA processing,160,92,380
+GO:0016192,vesicle-mediated transport,128,94,363
+GO:0007067,mitotic nuclear division,129,102,346
+GO:0016568,chromatin modification,115,106,936
+GO:0003729,mRNA binding,167,108,249
+GO:0004674,protein serine/threonine kinase activity,118,110,457
+GO:0006629,lipid metabolic process,143,114,421
+GO:0004672,protein kinase activity,123,115,454
+GO:0043565,sequence-specific DNA binding,158,120,375
+GO:0005935,cellular bud neck,156,123,482
+GO:0006468,protein phosphorylation,132,126,566
+GO:0016772,transferase activity,137,126,507
+GO:0045944,positive regulation of transcription from RNA polymerase II promoter,156,128,630
+GO:0005575,cellular_component,556,133,130
+GO:0005743,mitochondrial inner membrane,211,139,495
+GO:0006281,DNA repair,178,140,640
+GO:0051301,cell division,193,144,525
+GO:0006974,cellular response to DNA damage stimulus,195,154,797
+GO:0005794,Golgi apparatus,205,156,1364
+GO:0016491,oxidoreductase activity,271,157,350
+GO:0003676,nucleic acid binding,274,160,393
+GO:0008270,zinc ion binding,256,162,310
+GO:0005730,nucleolus,255,172,540
+GO:0016310,phosphorylation,199,177,746
+GO:0016301,kinase activity,200,178,749
+GO:0055114,oxidation-reduction process,309,188,444
+GO:0003824,catalytic activity,360,212,517
+GO:0003723,RNA binding,378,213,703
+GO:0005829,cytosol,308,220,789
+GO:0007049,cell cycle,299,240,1215
+GO:0008152,metabolic process,445,257,704
+GO:0015031,protein transport,369,268,1542
+GO:0005789,endoplasmic reticulum membrane,332,280,2102
+GO:0005886,plasma membrane,416,290,712
+GO:0003677,DNA binding,474,342,2024
+GO:0008150,biological_process,947,371,477
+GO:0005783,endoplasmic reticulum,430,374,3253
+GO:0006355,regulation of transcription,492,420,5214
+GO:0016787,hydrolase activity,618,426,1305
+GO:0006351,transcription,513,430,5283
+GO:0005524,ATP binding,629,512,2157
+GO:0046872,metal ion binding,720,524,1982
+GO:0016740,transferase activity,649,528,2784
+GO:0006810,transport,772,583,3513
+GO:0000166,nucleotide binding,787,661,3264
+GO:0005739,mitochondrion,1011,779,5146
+GO:0016021,integral component of membrane,1230,944,6714
+GO:0003674,molecular_function,1701,1128,5098
+GO:0016020,membrane,1620,1336,12754
+GO:0005634,nucleus,2004,1783,25908
+GO:0005737,cytoplasm,2096,1808,15962
