@@ -1,3 +1,5 @@
 venv
 *.pyc
 *.vim
+TP1
+*.zip
